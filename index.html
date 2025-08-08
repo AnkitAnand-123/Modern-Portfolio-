@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankit Anand | Futuristic Portfolio</title>
+
+    <!-- CDN Links -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.18.0/build/matter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+<body class="transition-colors duration-500  ">
+    <button id="theme-toggle" class="theme-toggle text-gray-300 hover:text-white">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+    
+    <!-- Canvas Background for Swirl -->
+    <canvas id="canvas-bg"></canvas>
+
+    <!-- Floating Particles -->
+    <div id="particles"></div>
+   
+    <!-- Navbar -->
+    <nav class="fixed md:px-24 top-0 left-0 right-0 z-50 backdrop-blur-md bg-opacity-80 bg-gray-900 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#"
+                class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-futuristic glow-text">WEB_DEVELOPER</a>
+
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#hero" class="nav-link text-gray-300 hover:text-white">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
+                <a href="#experience" class="nav-link text-gray-300 hover:text-white">Experience</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+               
+            </div>
+
+            <button id="mobile-toggle" class="md:hidden text-gray-300 hover:text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-nav" class="mobile-nav h-[450px]">
+            <button id="close-nav" class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col space-y-4">
+                <a href="#hero" class="nav-link text-gray-300 hover:text-gray-400">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-gray-400">About</a>
+                <a href="#experience" class="nav-link text-gray-300 hover:text-gray-400">Experience</a>
+                <a href="#skills" class="nav-link text-gray-300 hover:text-gray-400">Skills</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-gray-400">Projects</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-gray-400">Contact</a>
+                <button id="mobile-theme-toggle"
+                   >
+                   
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Swirl Background -->
+    <section id="hero" class="section flex items-center justify-center relative overflow-hidden">
+        <div class="content--canvas">
+            <canvas id="swirl-canvas"></canvas>
+        </div>
+        <div class="container mx-auto px-6 md:px-16 flex flex-col items-center relative z-10">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-text">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Hello,
+                        I'm</span>
+                    <span class="block">Web Developer</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl mb-6 text-gray-400 font-futuristic">Full Stack Developer & 3D Enthusiast
+                </h2>
+                <p class="text-lg mb-8 max-w-lg mx-auto">
+                    Crafting immersive digital experiences with cutting-edge web technologies and interactive 3D
+                    graphics.
+                </p>
+                <div class="flex space-x-4 justify-center">
+                    <a href="#projects"
+                        class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-medium hover:opacity-90 transition-all transform hover:scale-105 shadow-lg">
+                        View Work
+                    </a>
+                    <a href="#contact"
+                        class="px-8 py-3 border border-blue-400 text-blue-400 rounded-full font-medium hover:bg-blue-400 hover:text-white transition-all transform hover:scale-105">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <a href="#about" class="text-gray-400 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-gray-900/50 backdrop-blur-sm md:px-40">
+        <div class="container mx-auto px-6 py-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center font-futuristic glow-text">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">About</span> Me
+            </h2>
+
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-blue-400/30 shadow-xl">
+                            <img src="profile.jpg"
+                                alt="Developer" class="w-full h-full object-cover">
+                        </div>
+                        <div
+                            class="absolute -bottom-5 -right-5 bg-gradient-to-r from-blue-500 to-purple-600 p-4 rounded-full shadow-lg">
+                            <i class="fas fa-code text-2xl text-white"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-bold mb-4 font-futuristic">Who am I?</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        I'm a passionate full-stack developer with keen interset on Web Developement and creating immersive digital
+                        experiences.
+                        My expertise spans across modern HTML, CSS and JavaScript frameworks, 3D web graphics, and interactive UI/UX
+                        design.
+                    </p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        I specialize in building performant, accessible web applications with a focus on cutting-edge
+                        technologies
+                        like Three.js, WebGL, and GSAP for creating stunning visual experiences.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        When I'm not coding, you can find me exploring new technologies, contributing to open-source
+                        projects,
+                        or creating 3D art and animations.
+                    </p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-blue-400"></i>
+                            <span>Delhi, India</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-blue-400"></i>
+                            <span>anandaka04@gmail.com</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-blue-400"></i>
+                            <span>+91 (655) 123-4567</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-graduation-cap text-blue-400"></i>
+                            <span>Computer Science</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-briefcase text-blue-400"></i>
+                            <span>Fresher</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-globe text-blue-400"></i>
+                            <span>English, Hindi, Bengali</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section bg-gradient-to-br from-gray-900/50 to-blue-900/20 backdrop-blur-sm md:px-80">
+        <div class="container mx-auto px-6 py-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center font-futuristic glow-text">
+                My <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Experience</span>
+            </h2>
+
+            <div class="stepper-container">
+                <div class="stepper-line"></div>
+                <div class="stepper-item">
+                    <div class="stepper-circle"></div>
+                    <div class="stepper-content">
+                        <h3 class="text-xl font-semibold mb-2">Frontend web Developer Intern </h3>
+                        <p class="text-gray-400 mb-2">IBM Skills Build,India</p>
+                        <p class="text-gray-400 mb-2">July 2025 - August 2025</p>
+                        <p class="text-gray-300">Led development of a Carbon Footprint tracking platform using HTML, CSS , JavaScript and
+                            React, improving user engagement by 40%. </p>
+                    </div>
+                </div>
+                <div class="stepper-item">
+                    <div class="stepper-circle"></div>
+                    <div class="stepper-content">
+                        <h3 class="text-xl font-semibold mb-2">Frontend Developer</h3>
+                        <p class="text-gray-400 mb-2">Cantilever, India</p>
+                        <p class="text-gray-400 mb-2">June 2025- July 2025</p>
+                        <p class="text-gray-300">Developed interactive web applications with HTML, CSS and JavaScript, focusing on
+                            immersive user experiences. Optimized frontend performance, reducing load times by 30%.</p>
+                    </div>
+                </div>
+                <div class="stepper-item">
+                    <div class="stepper-circle"></div>
+                    <div class="stepper-content">
+                        <h3 class="text-xl font-semibold mb-2">Junior Developer</h3>
+                        <p class="text-gray-400 mb-2">StartUpX, India</p>
+                        <p class="text-gray-400 mb-2">2019 - 2021</p>
+                        <p class="text-gray-300">Contributed to full-stack development of e-commerce platforms using
+                            JavaScript and MongoDB. Assisted in integrating WebGL for product visualizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-gradient-to-br from-gray-900/50 to-blue-900/20 backdrop-blur-sm md:px-60">
+        <div class="container mx-auto px-6 py-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center font-futuristic glow-text">
+                My <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Skills</span>
+            </h2>
+
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Technologies I Work With</h3>
+                <div class="skill-marquee overflow-hidden py-4">
+                    <div class="skill-track">
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-js text-4xl text-yellow-400 mb-2"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-react text-4xl text-blue-400 mb-2"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <img src="https://icons8.com/icons/set/favicon-java" class="w-8 h-8 mb-2 " alt="Java">
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fab fa-git-alt text-4xl text-orange-600 mb-2"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item flex flex-col items-center">
+                            <i class="fas fa-database text-4xl text-blue-300 mb-2"></i>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Frontend Development</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>React.js</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-blue-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>HTML5</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-purple-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Tailwind CSS</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-cyan-500 h-2 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-center text-gray-300">Backend & Other Skills</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Node.js</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>MongoDB</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-400 h-2 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>WebGL</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-orange-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>UI/UX Design</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-pink-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-gray-900/50 backdrop-blur-sm md:px-60">
+        <div class="container mx-auto px-6 py-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center font-futuristic glow-text">
+                My <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Projects</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="3D Dashboard"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="inline-block px-2 py-1 bg-blue-500/80 text-xs rounded-md">Three.js</span>
+                            <span class="inline-block px-2 py-1 bg-purple-500/80 text-xs rounded-md ml-1">React</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">3D Data Visualization Dashboard</h3>
+                        <p class="text-gray-300 mb-4">Interactive 3D dashboard for real-time data analytics with WebGL
+                            rendering.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-purple-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="VR Portfolio"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="inline-block px-2 py-1 bg-green-500/80 text-xs rounded-md">WebXR</span>
+                            <span class="inline-block px-2 py-1 bg-blue-500/80 text-xs rounded-md ml-1">A-Frame</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">VR Developer Portfolio</h3>
+                        <p class="text-gray-300 mb-4">Immersive virtual reality portfolio experience built with WebXR
+                            and A-Frame.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="Interactive Art"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="inline-block px-2 py-1 bg-pink-500/80 text-xs rounded-md">GSAP</span>
+                            <span class="inline-block px-2 py-1 bg-yellow-500/80 text-xs rounded-md ml-1">Canvas</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Generative Art Platform</h3>
+                        <p class="text-gray-300 mb-4">Interactive generative art creation tool with real-time parameter
+                            adjustments.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-green-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="Game"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="inline-block px-2 py-1 bg-red-500/80 text-xs rounded-md">Phaser.js</span>
+                            <span class="inline-block px-2 py-1 bg-purple-500/80 text-xs rounded-md ml-1">WebGL</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Browser-Based 3D Game</h3>
+                        <p class="text-gray-300 mb-4">Procedurally generated 3D adventure game with physics and
+                            multiplayer support.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="AI"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span
+                                class="inline-block px-2 py-1 bg-indigo-500/80 text-xs rounded-md">TensorFlow.js</span>
+                            <span class="inline-block px-2 py-1 bg-blue-500/80 text-xs rounded-md ml-1">React</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">AI-Powered Image Generator</h3>
+                        <p class="text-gray-300 mb-4">Browser-based AI tool that generates images from text prompts
+                            using ML models.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div
+                    class="project-card bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-pink-400 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt="Blockchain"
+                            class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="inline-block px-2 py-1 bg-gray-600/80 text-xs rounded-md">Solidity</span>
+                            <span class="inline-block px-2 py-1 bg-blue-500/80 text-xs rounded-md ml-1">Web3.js</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">NFT Marketplace</h3>
+                        <p class="text-gray-300 mb-4">Decentralized platform for creating, buying and selling digital
+                            art NFTs.</p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                            </a>
+                            <a href="#" class="text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm md:px-60">
+        <div class="container mx-auto px-6 py-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center font-futuristic glow-text">
+                Get In <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Touch</span>
+            </h2>
+
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-6">Let's Talk About Your Project</h3>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        I'm currently available for freelance work and interesting project opportunities.
+                        If you have a project that you want to get started, think you need my help with
+                        something, or just want to say hello, then get in touch.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1">
+                                <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Location</h4>
+                                <p class="text-gray-300">Delhi, India</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1">
+                                <i class="fas fa-envelope text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-300">anandaka04@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="mt-1">
+                                <i class="fas fa-phone text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-300">+91 (655) 123-4567</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-blue-500 flex items-center justify-center transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-blue-400 flex items-center justify-center transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-pink-500 flex items-center justify-center transition-colors">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-700 hover:bg-blue-600 flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block mb-2 text-sm font-medium">Your Name</label>
+                                <input type="text" id="name"
+                                    class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium">Your Email</label>
+                                <input type="email" id="email"
+                                    class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2 text-sm font-medium">Subject</label>
+                            <input type="text" id="subject"
+                                class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 text-sm font-medium">Your Message</label>
+                            <textarea id="message" rows="5"
+                                class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="button"
+                            class="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all transform hover:scale-[1.01] shadow-lg">
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/80 backdrop-blur-md py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#"
+                        class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-futuristic">anku_raj</a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    © 2025 anku_anand. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="script.js"></script>
+   
+</body>
+
+</html>
